@@ -1,0 +1,61 @@
+Here’s the checklist as plain text that you can save or use in a `.txt` file:
+
+---
+
+Project Improvement Checklist
+
+1. Separation of Concerns
+
+* Move tooltip creation logic out of Helper and fully into ToolTip.
+* Keep Helper only responsible for generic DOM updates (e.g., switching list items).
+* Keep ProjectList focused on managing the project data array.
+
+2. Event Handling
+
+* Prevent multiple tooltips from being added on repeated clicks.
+* Ensure proper `this` binding in event listeners (.bind(this)).
+* Consider event delegation for scalability (attach listener to <ul> instead of each <li>).
+* Clean up event listeners if list items are moved between sections.
+
+3. DOM Selection
+
+* Avoid querySelector('button:first-of-type') or button:last-of-type.
+* Add data attributes for buttons: <button data-action="info">More Info</button> <button data-action="switch">Finish</button>
+* Use li.querySelector('[data-action="info"]') and li.querySelector('[data-action="switch"]').
+
+4. ProjectList Management
+
+* Initialize projects inside constructor to avoid shared reference:
+  this.projects = [];
+* Use cleaner array methods (filter) for moving projects instead of .splice().
+* Consider separating project state from DOM for better maintainability.
+
+5. Tooltip Creation & Cleanup
+
+* Check for existing tooltip before creating a new one.
+* Remove tooltip when the project moves to another list.
+* Keep tooltip self-contained — all DOM manipulation happens inside ToolTip.
+
+6. Code Maintainability
+
+* Remove unused properties (e.g., sectionId in ToolTip).
+* Separate UI update functions from business logic.
+* Add comments for important logic blocks.
+* Consistent naming for methods and variables.
+
+7. Scalability
+
+* Cache DOM references instead of querying repeatedly.
+* Use event delegation for handling clicks on multiple <li> elements.
+* Keep project state in JS objects and reflect updates to DOM, not the other way around.
+
+8. General Improvements
+
+* Add error handling for document.getElementById(id) returns null.
+* Validate project attributes (data-extra-info) before use.
+* Consider modularizing classes into separate files for clarity.
+* Keep logic flexible for future addition of features (e.g., sorting, filtering).
+
+---
+
+This text can be saved as `project_improvement_notes.txt` for reference.
